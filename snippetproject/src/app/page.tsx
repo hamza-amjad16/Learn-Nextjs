@@ -3,6 +3,11 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Snippet } from "@prisma/client";
 
+// export const dynamic = "force-dynamic" // disable the caching --> dynamic caching
+// export const revalidate= 0 // --> dynamic caching  
+// in Dono sa dynamic route ban jata hai page
+
+
 
 export default async function Home() {
 
