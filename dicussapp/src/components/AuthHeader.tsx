@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import React from "react";
 import { Button } from "./ui/button";
-import { loginWithGithub, logout } from "@/app/actions";
+import { loginWithGithub, logout } from "@/actions";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { LogOut } from "lucide-react";
