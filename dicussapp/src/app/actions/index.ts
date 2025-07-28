@@ -1,11 +1,13 @@
-"use server";
+'use client';
 
-import { redirect } from "next/navigation";
+import { signIn, signOut } from "next-auth/react";
 
+// GitHub Login Action
 export async function loginWithGithub() {
-  redirect("/api/auth/signin/github");
+  await signIn("github");
 }
 
-export async function logoutUser() {
-  redirect("/api/auth/signout");
+// SignOut Action
+export async function logout() {
+  await signOut();
 }
