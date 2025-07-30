@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Postshow from '@/components/posts/post-show'
 import CommentCreateForm from '@/components/comments/comment-create-form'
 import Link from 'next/link'
@@ -16,7 +16,9 @@ const PostShowPage : React.FC<PostShowPageProps> = async ({params}) => {
   return (
     <div className='space-y-3'>
       <Link className='flex items-center' href={`/topics/${slug}`}><ChevronLeft /> Back to {slug}</Link>
+      <Suspense fallback={<p>Loading...</p>}>
       <Postshow postid = {postid} />
+      </Suspense>
       <CommentCreateForm postId={postid} startOpen/>
       <CommentList postId = {postid} />
     </div>

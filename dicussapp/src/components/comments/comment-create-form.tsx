@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { createComment } from "@/actions/create-comment";
 import { Loader2 } from "lucide-react";
+import { Input } from "../ui/input";
 
 type CommentCreateFormProps = {
   postId: string;
@@ -22,40 +23,49 @@ const CommentCreateForm: React.FC<CommentCreateFormProps> = ({
     { errors: {} }
   );
   return (
-    <div>
-      <Button size={"sm"} variant={"link"} onClick={() => setOpen(!open)}>
-        Reply
-      </Button>
-      {open && (
-        <form action={action} className="space-y-2">
-          <Textarea
-            name="content"
-            placeholder="write a comment..."
-            className="bg-gray-100 focus-visible:ring-0 w-[50%]"
-          />
-          {formState.errors.content && (
-            <p className="text-red-600 text-sm">{formState.errors.content}</p>
-          )}
-          {formState.errors.formError && (
-            <div className="bg-red-200 border-red-600 border text-sm">
-              {formState.errors.formError}
-            </div>
-          )}
+   <div className="mt-2">
+  <Button
+    size={"sm"}
+    variant={"link"}
+    className="text-sm text-blue-600 hover:underline"
+    onClick={() => setOpen(!open)}
+  >
+    Reply
+  </Button>
 
-          <Button size={"sm"} variant={"secondary"}>
-            {
-                isPending && (
-                    <>
-                    <Loader2 />
-                    "Please Wait"
-                    </>
-                )
-            }
-            Save
-          </Button>
-        </form>
+  {open && (
+    <form action={action} className="space-y-2 mt-2">
+      <Input
+        name="content"
+        placeholder="Write a reply..."
+        className="bg-gray-100 focus-visible:ring-0 w-[30%] rounded-md text-sm"
+      />
+      {formState.errors.content && (
+        <p className="text-red-600 text-xs">{formState.errors.content}</p>
       )}
-    </div>
+      {formState.errors.formError && (
+        <div className="bg-red-100 border border-red-500 p-2 text-xs text-red-700 rounded">
+          {formState.errors.formError}
+        </div>
+      )}
+
+      <Button
+        size={"sm"}
+        variant={"secondary"}
+        className="flex gap-2 items-center text-sm"
+      >
+        {isPending && (
+          <>
+            <Loader2 className="animate-spin h-4 w-4" />
+            Please Wait
+          </>
+        )}
+        {!isPending && "Save"}
+      </Button>
+    </form>
+  )}
+</div>
+
   );
 };
 
